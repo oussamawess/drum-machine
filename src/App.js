@@ -15,7 +15,7 @@ function App() {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []); // Removed playSound from the dependency array
+  }); // Removed playSound from the dependency array
 
 const drumPads = [
     {
