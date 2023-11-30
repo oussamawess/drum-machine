@@ -6,10 +6,17 @@ function App() {
   const [activeKeyColor, setActiveKeyColor] = useState('');
 
   useEffect(() => {
-    document.addEventListener('keydown', (event) => {
+    const handleKeyDown = (event) => {
       playSound(event.key.toUpperCase());
-    });
-  }, []);
+    };
+  
+    document.addEventListener('keydown', handleKeyDown);
+  
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [playSound]);
+  
 
  const drumPads = [
     {
