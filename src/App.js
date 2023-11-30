@@ -9,16 +9,15 @@ function App() {
     const handleKeyDown = (event) => {
       playSound(event.key.toUpperCase());
     };
-  
+
     document.addEventListener('keydown', handleKeyDown);
-  
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [playSound]);
-  
+  }, []); // Removed playSound from the dependency array
 
- const drumPads = [
+const drumPads = [
     {
       keyCode: 81,
       text: "Q",
@@ -66,21 +65,18 @@ function App() {
     }
   ];
 
-
   function playSound(selector) {
     const drumPad = drumPads.find((pad) => pad.text === selector);
-  
+
     if (drumPad) {
       const audio = document.getElementById(selector);
       audio.play();
       setActiveKey(selector);
       setActiveKeyColor('active');
     } else {
-      // Handle the case where the pressed key doesn't correspond to a valid drum pad
       console.error(`No drum pad found for key: ${selector}`);
     }
   }
-  
 
   return (
     <div className="App">
